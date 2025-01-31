@@ -1,0 +1,781 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace softito_odev1
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+         
+        ////YAĞMUR HİLAL YAVUZER SOfTITO BACKEND 1.ödev
+
+        #region 1.for döngüsü ile çözülmüş tek-çift toplama
+            //x:
+            //int sayi;
+            //int ciftToplam = 0;
+            //int tekToplam = 0;
+            //int tek = 0;
+            //int i = 0;
+            //int j = 1;
+            //Console.WriteLine("Lütfen bir sayı girin:");
+            //sayi = Convert.ToInt32(Console.ReadLine());
+            //for (; i <= sayi || j <= sayi; i += 2, j += 2)
+            //{
+            //    ciftToplam += i;
+            //    tekToplam += j;
+            //}
+            //tek = tekToplam - j;
+            //Console.WriteLine("Çift Sayıların toplamı: " + ciftToplam);
+            //Console.WriteLine("Tek Sayıların toplamı: " + tekToplam);
+            //goto x;
+            #endregion
+
+        #region 1.While döngüsü ile çözülmüş tek-çift toplama
+            //x:
+            //    int sayi;
+            //    int ciftToplam = 0;
+            //    int tekToplam = 0;
+
+            //    Console.WriteLine("Lütfen bir sayı girin:");
+            //    sayi = Convert.ToInt32(Console.ReadLine());
+
+            //    int i = 0;
+            //    int j = 1;
+
+            //    while (i <= sayi || j <= sayi)
+            //    {
+            //        if (i <= sayi)
+            //        {
+            //            ciftToplam += i;
+            //            i += 2; // burada çift sayıları 2şerr şekilde arttıracak.
+            //        }
+            //        if (j <= sayi)
+            //        {
+            //            tekToplam += j;
+            //            j += 2; // burada ise tek sayıları 2şer şekilde artıracak
+            //        }
+            //    }
+
+            //    Console.WriteLine("Çift Sayıların Toplamı: " + ciftToplam);
+            //    Console.WriteLine("Tek Sayıların Toplamı: " + tekToplam);
+            //    goto x;
+            #endregion
+
+        #region 2.for döngüsü ile sayı 
+            //int sayi;
+            //sayi = int.Parse(Console.ReadLine());
+
+            //for (int i = 1; i <= sayi; i++)
+            //{
+            //    for (int j = sayi; j >= i; j--)
+            //    {
+            //        Console.Write(i);
+            //    }
+            //    Console.WriteLine();
+            //}
+            //Console.ReadLine();
+            #endregion
+
+        #region 2.while döngüsü ile sayı
+        //    int sayi;
+        //    sayi = int.Parse(Console.ReadLine());
+
+        //    int i = 1;
+
+        //    while (i <= sayi)
+        //    {
+        //        int j = sayi;
+
+        //        while (j >= i)
+        //        {
+        //            Console.Write(i);
+        //            j--;
+        //        }
+
+        //        Console.WriteLine();
+        //        i++;
+        //    }
+
+        //    Console.ReadLine();
+        //}
+        #endregion
+
+        #region 3.for döngüsü ile çözülmüş yıldızlarla çam ağacı
+        //int body = int.Parse(Console.ReadLine());
+        //int satir;
+        //satir = (body * 2) - 1;
+
+
+        //for (int i = 1; i <= satir; i += 2)
+        //{
+        //    Console.WriteLine();
+        //    int bosluk = (satir - i) / 2;
+        //    for (int j = 0; j < bosluk; j++)
+        //    {
+        //        Console.Write(" ");
+        //    }
+        //    for (int j = 0; j < i; j++)
+        //    {
+        //        Console.Write("*");
+        //    }
+
+        //}
+        //Console.Write(body);
+        //for (int i = 0; i < ((satir - 1) / 2); i++)
+        //{
+        //    Console.WriteLine();
+        //    for (int j = 0; j < ((satir - 3) / 2); j++)
+        //    {
+        //        Console.Write(" ");
+        //    }
+        //    for (int m = 0; m < 3; m++)
+        //    {
+        //        Console.Write("*");
+        //    }
+        //}
+        #endregion
+
+        #region 3.while döngüsü ile çözülmüş yıldızlarla çam ağacı
+        //int body = int.Parse(Console.ReadLine());
+        //int satir = (body * 2) - 1;
+
+        //// Üst 
+        //int i = 1;
+        //while (i <= satir)
+        //{
+        //    Console.WriteLine();
+        //    int bosluk = (satir - i) / 2;
+        //    int j = 0;
+        //    while (j < bosluk)
+        //    {
+        //        Console.Write(" ");
+        //        j++;
+        //    }
+        //    int k = 0;
+        //    while (k < i)
+        //    {
+        //        Console.Write("*");
+        //        k++;
+        //    }
+
+        //    i += 2; //1,3,5...
+        //}
+        //Console.Write(body);
+        //// Alt kısım yıldızaları
+        //int m = 0;
+        //while (m < ((satir - 1) / 2))
+        //{
+        //    Console.WriteLine();
+        //    int h = 0;
+        //    while (h < ((satir - 3) / 2))
+        //    {
+        //        Console.Write(" ");
+        //        h++;
+        //    }
+        //    // Gövde yıldızları
+        //    int y = 0;
+        //    while (y < 3)
+        //    {
+        //        Console.Write("*");
+        //        y++;
+        //    }
+        //    m++;
+        //}
+        #endregion
+
+        #region  4.for ile elmas
+        //    int bosluk;
+        //    int yildiz;
+        //    Console.WriteLine("orta satırdaki * sayısını girin (tek sayı)");
+        //x:
+        //    int n = int.Parse(Console.ReadLine());
+        //    if (n % 2 == 0)
+        //    {
+        //        Console.Write("Lütfen tek sayı girin:  ");
+        //        goto x;
+        //    }
+        //    else
+        //    {
+        //        for (int i = 1; i <= n; i += 2)
+        //        {
+        //            bosluk = (n - i) / 2;
+        //            yildiz = i;
+
+        //            for (int j = 0; j < bosluk; j++)
+        //            {
+        //                Console.Write(" ");
+        //            }
+
+        //            for (int j = 0; j < yildiz; j++)
+        //            {
+        //                Console.Write("*");
+        //            }
+
+        //            Console.WriteLine();
+        //        }
+
+        //        for (int i = n - 2; i >= 1; i -= 2)
+        //        {
+        //            bosluk = (n - i) / 2;
+        //            yildiz = i;
+
+        //            for (int j = 0; j < bosluk; j++)
+        //            {
+        //                Console.Write(" ");
+        //            }
+
+        //            for (int j = 0; j < yildiz; j++)
+        //            {
+        //                Console.Write("*");
+        //            }
+
+        //            Console.WriteLine();
+        //        }
+        //    }
+
+
+        //    for (int i = 0; i < 4; i++)//0 1
+        //    {
+        //        Console.WriteLine();
+        //        for (int j = 3 - i; j > 0; j--)//3 2 1 0
+        //        {
+        //            Console.Write(" ");
+        //        }
+        //        for (int k = 0; k < 2 * i + 1; k++)//0 1
+        //        {
+        //            Console.Write("*");
+        //        }
+
+
+        //    }
+        //    for (int i = 0; i < 4; i++)
+        //    {
+        //        Console.WriteLine();
+        //        for (int j = 0; j < i + 1; j++)
+        //        {
+        //            Console.Write(" ");
+        //        }
+        //        for (int k = 5 - (i * 2); k > 0; k--)
+        //        {
+        //            Console.Write("*");
+        //        }
+        //    }
+        #endregion
+
+        #region 4.while ile elmas
+        //int bosluk;
+        //int yildiz;
+        //Console.WriteLine("orta satırdaki * sayısını girin (tek sayı)");
+        //int n;
+        //while (true)
+        //{
+        //    n = int.Parse(Console.ReadLine());
+        //    if (n % 2 != 0) break;
+        //    Console.Write("Lütfen tek sayı girin: ");
+        //}
+
+        //// Üst 
+        //int i = 1;
+        //while (i <= n)
+        //{
+        //    bosluk = (n - i) / 2;
+        //    yildiz = i;
+
+        //    int j = 0;
+        //    while (j < bosluk)
+        //    {
+        //        Console.Write(" ");
+        //        j++;
+        //    }
+
+        //    j = 0;
+        //    while (j < yildiz)
+        //    {
+        //        Console.Write("*");
+        //        j++;
+        //    }
+        //    Console.WriteLine();
+        //    i += 2;
+        //}
+        //i = n - 2;
+        //while (i >= 1)
+        //{
+        //    bosluk = (n - i) / 2;
+        //    yildiz = i;
+
+        //    int j = 0;
+        //    while (j < bosluk)
+        //    {
+        //        Console.Write(" ");
+        //        j++;
+        //    }
+
+        //    j = 0;
+        //    while (j < yildiz)
+        //    {
+        //        Console.Write("*");
+        //        j++;
+        //    }
+        //    Console.WriteLine();
+        //    i -= 2;
+        //}
+
+        //i = 0;
+        //while (i < 4)
+        //{
+        //    Console.WriteLine();
+        //    int j = 3 - i;
+        //    while (j > 0)
+        //    {
+        //        Console.Write(" ");
+        //        j--;
+        //    }
+        //    int k = 0;
+        //    while (k < 2 * i + 1)
+        //    {
+        //        Console.Write("*");
+        //        k++;
+        //    }
+        //    i++;
+        //}
+
+
+        //i = 0;
+        //while (i < 3) 
+        //{
+        //    Console.WriteLine();
+        //    int j = 0;
+        //    while (j < i + 1)
+        //    {
+        //        Console.Write(" ");
+        //        j++;
+        //    }
+        //    int k = 5 - (i * 2);
+        //    while (k > 0)
+        //    {
+        //        Console.Write("*");
+        //        k--;
+        //    }
+        //    i++;
+        //}
+
+
+        //Console.WriteLine("\n" + n);
+        //i = 0;
+        //while (i < 2)
+        //{
+        //    int j = 0;
+        //    while (j < (n - 3) / 2)
+        //    {
+        //        Console.Write(" ");
+        //        j++;
+        //    }
+        //    j = 0;
+        //    while (j < 3)
+        //    {
+        //        Console.Write("*");
+        //        j++;
+        //    }
+        //    Console.WriteLine();
+        //    i++;
+        //}
+        #endregion
+
+        #region 5.for döngüsü ile fibonacci
+        //x:
+        //int a = 1;
+        //int b = 1;
+        //Console.Write("Gösterilecek Fibonacci Adım Sayısını Girin: ");
+        //int sayi = int.Parse(Console.ReadLine());
+        //for (int j = 0; j < sayi; j++)
+        //{
+        //    Console.Write(a);
+        //    int adim = a + b;
+        //    a = b;
+        //    b = adim;
+        //}
+        //goto x;
+
+        #endregion
+
+        #region 5.while döngüsü ile fibonacci 
+        //y:
+        //    int a = 1;
+        //    int b = 1;
+        //    Console.Write("Gösterilecek Fibonacci Adım Sayısını Girin: ");
+        //    int sayi = int.Parse(Console.ReadLine());
+
+        //    int j = 0;
+        //    while (j < sayi)
+        //    {
+
+        //        int adim = a + b;
+        //        a = b;
+        //        b = adim;
+        //        j++;
+        //    }
+        //    goto y;
+        #endregion
+
+        #region 6.for döngüsü ile banka
+
+        ////3 kere giriş hakkı
+        //// para çekme, para gönderme, bakiye kontrolü, çıkış,
+
+
+        //int bakiye = 10000;
+        //string sifre = "1234";
+        //string girilen;
+
+        //for (int hak = 3; hak > 0; hak--)
+        //{
+
+
+        //    Console.WriteLine("Şifrenizi Girin: ");
+        //    girilen = Console.ReadLine();
+
+        //    if (girilen == sifre)
+        //    {
+        //        Console.WriteLine("Giriş başarılı!");
+        //        break;
+        //    }
+        //    else
+        //    {
+        //        Console.WriteLine("Hatalı kullanıcı adı veya şifre. Kalan giriş hakkı: " + (hak - 1));
+        //        if (hak - 1 == 0)
+        //        {
+        //            Console.WriteLine("Giriş hakkınız bitti. Programdan çıkılıyor.");
+        //            return;
+        //        }
+        //    }
+        //}
+
+        //bool cikisYapildi = false;
+        //for (; !cikisYapildi;)
+        //{
+        //    Console.WriteLine("1. Para Çekme");
+        //    Console.WriteLine("2. Para Gönderme");
+        //    Console.WriteLine("3. Bakiye Kontrol");
+        //    Console.WriteLine("4. Çıkış");
+        //    Console.Write("Yapmak istediğiniz işlemi seçin: ");
+        //    string secim = Console.ReadLine();
+
+        //    switch (secim)
+        //    {
+        //        case "1":
+        //            Console.Write("Çekmek istediğiniz tutarı girin: ");
+        //            int cekilecektutar = int.Parse(Console.ReadLine());
+
+        //            if (cekilecektutar <= bakiye)
+        //            {
+        //                bakiye -= cekilecektutar;
+        //                Console.WriteLine($"Başarıyla {cekilecektutar} TL çekildi. Güncel bakiye: {bakiye} TL");
+        //            }
+        //            else
+        //            {
+        //                Console.WriteLine("Yetersiz bakiye.");
+
+        //            }
+        //            break;
+
+        //        case "2":
+        //            Console.Write("Göndermek istediğiniz tutarı girin: ");
+        //            int yuklenecektutar = int.Parse(Console.ReadLine());
+
+        //            if (yuklenecektutar <= bakiye)
+        //            {
+        //                bakiye += yuklenecektutar;
+        //                Console.WriteLine($"Başarıyla {yuklenecektutar} TL gönderildi. Güncel bakiye: {bakiye} TL");
+        //            }
+        //            else
+        //            {
+        //                Console.WriteLine("Yetersiz bakiye.");
+
+        //            }
+        //            break;
+
+        //        case "3":
+        //            Console.WriteLine($"Güncel bakiyeniz: {bakiye} TL");
+        //            break;
+
+        //        case "4":
+        //            cikisYapildi = true;
+        //            Console.WriteLine("Çıkış yapılıyor. Hoşçakalın!");
+        //            break;
+
+        //        default:
+        //            Console.WriteLine("Geçersiz seçenek. Lütfen tekrar deneyin.");
+        //            break;
+        //    }
+        #endregion
+
+        #region 6.while döngüsü ile banka sorusu
+
+        //int bakiye = 10000;
+        //string sifre = "1234";
+        //string girilen;
+        //int hak = 3; 
+        //while (hak > 0)
+        //{
+        //    Console.Write("Şifrenizi Girin: ");
+        //    girilen = Console.ReadLine();
+
+        //    if (girilen == sifre)
+        //    {
+        //        Console.WriteLine("Giriş başarılı!");
+        //        break;
+        //    }
+        //    else
+        //    {
+        //        hak--;
+        //        Console.WriteLine($"Hatalı şifre. Kalan giriş hakkı: {hak}");
+        //        if (hak == 0)
+        //        {
+        //            Console.WriteLine("Giriş hakkınız bitti. Programdan çıkılıyor.");
+        //            return;
+        //        }
+        //    }
+        //}
+        //bool cikisYapildi = false;
+        //while (!cikisYapildi)
+        //{
+        //    Console.WriteLine("\n1. Para Çekme");
+        //    Console.WriteLine("2. Para Gönderme");
+        //    Console.WriteLine("3. Bakiye Kontrol");
+        //    Console.WriteLine("4. Çıkış");
+        //    Console.Write("Yapmak istediğiniz işlemi seçin: ");
+        //    string secim = Console.ReadLine();
+
+        //    switch (secim)
+        //    {
+        //        case "1":
+        //            Console.Write("Çekmek istediğiniz tutarı girin: ");
+        //            int cekilecekTutar = int.Parse(Console.ReadLine());
+
+        //            if (cekilecekTutar <= bakiye && cekilecekTutar > 0)
+        //            {
+        //                bakiye -= cekilecekTutar;
+        //                Console.WriteLine($"Başarıyla {cekilecekTutar} TL çekildi. Güncel bakiye: {bakiye} TL");
+        //            }
+        //            else
+        //            {
+        //                Console.WriteLine("Geçersiz tutar veya yetersiz bakiye!");
+        //            }
+        //            break;
+
+        //        case "2":
+        //            Console.Write("Göndermek istediğiniz tutarı girin: ");
+        //            int gonderilecekTutar = int.Parse(Console.ReadLine());
+
+        //            if (gonderilecekTutar <= bakiye && gonderilecekTutar > 0)
+        //            {
+        //                bakiye -= gonderilecekTutar;
+        //                Console.WriteLine($"Başarıyla {gonderilecekTutar} TL gönderildi. Güncel bakiye: {bakiye} TL");
+        //            }
+        //            else
+        //            {
+        //                Console.WriteLine("Geçersiz tutar veya yetersiz bakiye!");
+        //            }
+        //            break;
+
+        //        case "3":
+        //            Console.WriteLine($"Güncel bakiyeniz: {bakiye} TL");
+        //            break;
+
+        //        case "4":
+        //            cikisYapildi = true;
+        //            Console.WriteLine("Çıkış yapılıyor. Hoşçakalın!");
+        //            break;
+
+        //        default:
+        //            Console.WriteLine("Geçersiz seçenek. Lütfen 1-4 arası bir değer girin!");
+        //            break;
+        //    }
+        //}
+        #endregion
+
+        #region 7.for ile 1000 sayısının bölenlerini yazdırma
+
+        //for (int i = 1; i <= 1000; i++)
+        //{
+        //    if (1000 % i == 0)
+        //    {
+        //        Console.WriteLine(i);
+        //    }
+        //}
+
+        #endregion
+
+        #region 7.while döngüsü ile 1000 sayısının bölenlerini yazdırma
+        //int i = 1; 
+        //while (i <= 1000)
+        //{
+        //    if (1000 % i == 0)
+        //    {
+        //        Console.WriteLine(i);
+        //    }
+        //    i++; 
+        //}
+        #endregion
+
+        #region 8.for ile asal sayılar
+
+        //Console.WriteLine("Sayı Giriz: ");
+        //int num = int.Parse(Console.ReadLine());
+
+        //for (int i = 2; i <= num; i++)
+        //{
+        //    bool isPrime = true;
+
+
+        //    for (int y = 2; y < i; y++)
+        //    {
+        //        if (i % y == 0)
+        //        {
+        //            isPrime = false;
+        //            break;
+        //        }
+        //    }
+
+        //    if (isPrime)
+        //    {
+        //        Console.Write($"{i} ");
+        //    }
+        //}
+
+
+        //Console.Write("Bir sayı girinizz: ");
+        //int n = int.Parse(Console.ReadLine());
+
+        //Console.WriteLine("Asal sayılar:");
+
+        //for (int i = 2; i <= n; i++)
+        //{
+        //    int bolenSayisi = 0;
+
+        //    for (int j = 1; j <= i; j++)
+        //    {
+        //        if (i % j == 0)
+        //        {
+        //            bolenSayisi++;
+        //        }
+        //    }
+
+        //    if (bolenSayisi == 2) 
+        //    {
+        //        Console.Write(i + " ");
+        //    }
+        //}
+
+        #endregion
+
+        #region 8.while ile asal sayılar 
+        //Console.Write("Sayı Giriniz: ");
+        //int num = int.Parse(Console.ReadLine());
+
+        //int i = 2;
+        //while (i <= num)
+        //{
+        //    bool isPrime = true;
+        //    int y = 2;
+        //    while (y < i)
+        //    {
+        //        if (i % y == 0)
+        //        {
+        //            isPrime = false;
+        //            break;
+        //        }
+        //        y++;
+        //    }
+
+        //    if (isPrime)
+        //    {
+        //        Console.Write(i + " ");
+        //    }
+        //    i++;
+        //}
+        #endregion
+
+        #region  9.for ile sağa yatık yıldız
+        //int total = 5;
+        //int space = 4;
+
+        //for (int j = 0; j < total; j++)
+        //{
+        //    for (int y = 0; y < space; y++)
+        //        Console.Write(" ");
+
+        //    for (int y = 0; y < total - space; y++)
+        //        Console.Write("*");
+
+        //    space -= 1;
+        //    Console.Write("\n");
+        //}
+        #endregion
+
+        #region  9.whilw ile sağa yatık yıldız
+        //int total = 5;
+        //int space = 4;
+        //int j = 0;
+
+        //while (j < total)
+        //{
+        //    int y = 0;
+
+        //    while (y < space)
+        //    {
+        //        Console.Write(" ");
+        //        y++;
+        //    }
+
+        //    y = 0;
+        //    while (y < total - space)
+        //    {
+        //        Console.Write("*");
+        //        y++;
+        //    }
+
+        //    space -= 1;
+        //    Console.Write("\n");
+        //    j++;
+        //}
+        //}
+    #endregion
+
+        #region 10.for ile 4 satır yıldız 
+        //for (int i = 0; i< 4; i++) 
+        //{
+        //   for (int j = 0; j< 3; j++) 
+        //   {
+        //       Console.Write("*");
+        //   }
+        //Console.WriteLine(); 
+        //}
+            #endregion
+
+        #region 10.while ile 4 satır yıldız 
+        int i = 0; 
+        while (i < 4) 
+        {
+           int j = 0; 
+           while (j < 3) 
+           {
+           Console.Write("*");
+           j++; 
+           }
+           Console.WriteLine(); 
+           i++; 
+           }
+        #endregion
+
+
+        }
+    }
+}
+
+
+
