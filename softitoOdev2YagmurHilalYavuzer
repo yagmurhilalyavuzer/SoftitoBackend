@@ -85,8 +85,7 @@ namespace RestoranYonetim
                             continue;
                         }
 
-                        // Sipariş alma döngüsü: Kullanıcı önce kategori, sonra ürün, sonra adet seçsin
-                        // Kategori, ürün ve fiyat bilgilerini içeren diziler:
+                        
                         string[] kategoriler = { "Yemekler", "İçecekler", "Tatlılar" };
                         int[,] fiyatlar = { { 250, 200, 150 }, { 50, 60, 70 }, { 100, 200, 250 } };
                         string[,] urunler = {
@@ -126,15 +125,15 @@ namespace RestoranYonetim
                             Console.Write("Adet giriniz: ");
                             int adet = int.Parse(Console.ReadLine());
 
-                            // Siparişin tutarını hesaplayıp, o seansın açık sipariş gelirine ekle
+                            
                             secilenMasaGeliri += fiyatlar[kategori, urun] * adet;
-                            // İsteğe bağlı olarak, sipariş detayını da saklayabilirsiniz:
+                            
                             secilenUrunListesi[secilenMasaIndex][urun] = (urun + 1) + ". Ürün (" + urunler[kategori, urun] + ") - " + (fiyatlar[kategori, urun] * adet) + " TL";
 
                             Console.Write("Başka sipariş eklemek ister misiniz? (E/H): ");
                             if (Console.ReadLine().ToUpper() != "E")
                                 break;
-                        } // sipariş alma döngüsü sonu
+                        } 
 
                         if (secilenMasaGeliri > 0)
                             orderConfirmed = true;
