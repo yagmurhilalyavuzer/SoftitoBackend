@@ -1,0 +1,279 @@
+using System;
+
+namespace RestoranYonetim
+{
+    class Program
+    {
+        static void Main()
+        {
+            int masa1Gelir = 0, masa2Gelir = 0, masa3Gelir = 0;
+            int[] masaToplamGelirleri = { 0, 0, 0 };
+            string[] masaDurumlari = { "Hizmet Dışı", "Boş", "Hizmete Açık", "Dolu" };
+            int masa1Durum = 0, masa2Durum = 0, masa3Durum = 0;
+            int[] urunFiyatlari = { 50, 75, 100, 30 };
+            bool[][] secilenUrunler = { new bool[4], new bool[4], new bool[4] };
+            int secilenMasaGeliri = 0;
+            string[][] secilenUrunListesi = { new string[4], new string[4], new string[4] };
+            int secilenMasaIndex = -1;
+            int kasaToplamGelir = 0;
+
+            while (true)
+            {
+                Console.Clear();
+                Console.WriteLine(".................................................");
+                Console.WriteLine(".              RAINMOON RESTAURANT              .");
+                Console.WriteLine(".................................................");
+                Console.WriteLine(".                   ANA MENÜ                    .");
+                Console.WriteLine(".................................................");
+                Console.WriteLine(".         1 - Masa Aç                           .");
+                Console.WriteLine(".         2 - Masa İşlem (Sipariş Al)           .");
+                Console.WriteLine(".         3 - Masa Hesap (Toplam Tutar Gör)     .");
+                Console.WriteLine(".         4 - Kasa İşlemleri (Günlük Ciro Gör)  .");
+                Console.WriteLine(".         0 - Çıkış                             .");
+                Console.WriteLine(".................................................");
+                Console.Write("Seçiminizi yapınız (ESC: Ana Menü): ");
+                ConsoleKeyInfo tus = Console.ReadKey(true);
+                if (tus.Key == ConsoleKey.Escape) continue;
+                string secim = tus.KeyChar.ToString();
+                if (secim == "0") break;
+
+                if (secim == "1")
+                {
+                    while (true)
+                    {
+                        secilenMasaGeliri = 0;
+                        bool orderConfirmed = false;
+
+                        Console.Clear();
+                        Console.WriteLine(".................................................");
+                        Console.WriteLine(".              RAINMOON RESTAURANT              .");
+                        Console.WriteLine(".................................................");
+                        Console.WriteLine(".                   MASA AÇ                     .");
+                        Console.WriteLine(".................................................");
+                        Console.WriteLine(" 3 - Masa [" + masaDurumlari[masa3Durum] + "]                     ");
+                        Console.WriteLine(" 1 - Masa [" + masaDurumlari[masa1Durum] + "]                     ");
+                        Console.WriteLine(" 2 - Masa [" + masaDurumlari[masa2Durum] + "]                     ");
+                        Console.WriteLine(".................................................");
+
+                        Console.Write("Masa açmak için masa numarası giriniz (ESC: Ana Menü): ");
+                        ConsoleKeyInfo masaTus = Console.ReadKey(true);
+                        if (masaTus.Key == ConsoleKey.Escape)
+                            break;
+                        string masaGiris = masaTus.KeyChar.ToString();
+                        secilenMasaIndex = int.Parse(masaGiris) - 1;
+
+                        if ((secilenMasaIndex == 0 && masa1Durum == 3) ||
+                            (secilenMasaIndex == 1 && masa2Durum == 3) ||
+                            (secilenMasaIndex == 2 && masa3Durum == 3))
+                        {
+                            Console.WriteLine("Bu masa dolu! Önce hesabı kapatmalısınız.");
+                            Console.ReadLine();
+                            continue;
+                        }
+
+                        if (secilenMasaIndex == 0 && masa1Durum != 0)
+                            masa1Durum = 2;
+                        else if (secilenMasaIndex == 1 && masa2Durum != 0)
+                            masa2Durum = 2;
+                        else if (secilenMasaIndex == 2 && masa3Durum != 0)
+                            masa3Durum = 2;
+                        else
+                        {
+                            Console.WriteLine("Seçilen masa hizmet dışı!");
+                            Console.ReadLine();
+                            continue;
+                        }
+
+                        while (true)
+                        {
+                            Console.Clear();
+                            Console.WriteLine(".................................................");
+                            Console.WriteLine(".                       MENÜ                    .");
+                            Console.WriteLine(".................................................");
+
+
+                            for (int i = 0; i < urunFiyatlari.Length; i++)
+                            {
+                                Console.WriteLine(" " + (i + 1) + ". Ürün - " + urunFiyatlari[i] + " TL ");
+                            }
+
+                            Console.WriteLine(".................................................");
+                            Console.WriteLine(".            X. MASA - SİPARİŞLERİ              .");
+                            Console.WriteLine(".................................................");
+
+
+                            for (int i = 0; i < secilenUrunListesi[secilenMasaIndex].Length; i++)
+                            {
+                                if (secilenUrunListesi[secilenMasaIndex][i] != null)
+                                {
+                                    Console.WriteLine(" " + secilenUrunListesi[secilenMasaIndex][i] + " ");
+                                }
+                            }
+
+                            Console.WriteLine(".................................................");
+                            Console.WriteLine(".                [Space] Onayla                 .");
+                            Console.WriteLine(".                [ESC] Ana Menü                 .");
+                            Console.WriteLine(".................................................");
+                            Console.Write("Ürün eklemek için ürün numarası giriniz: ");
+
+                            ConsoleKeyInfo key = Console.ReadKey(true);
+                            if (key.Key == ConsoleKey.Escape)
+                            {
+                                orderConfirmed = false;
+                                break;
+                            }
+                            else if (key.Key == ConsoleKey.Spacebar)
+                            {
+                                orderConfirmed = true;
+                                break;
+                            }
+
+                            else if (char.IsDigit(key.KeyChar))
+                            {
+                                int urunId = int.Parse(key.KeyChar.ToString());
+                                if (urunId >= 1 && urunId <= 4)
+                                {
+                                    if (secilenUrunler[secilenMasaIndex][urunId - 1])
+                                    {
+                                        secilenMasaGeliri -= urunFiyatlari[urunId - 1];
+                                        secilenUrunler[secilenMasaIndex][urunId - 1] = false;
+                                        secilenUrunListesi[secilenMasaIndex][urunId - 1] = null;
+                                    }
+                                    else
+                                    {
+                                        secilenMasaGeliri += urunFiyatlari[urunId - 1];
+                                        secilenUrunler[secilenMasaIndex][urunId - 1] = true;
+                                        secilenUrunListesi[secilenMasaIndex][urunId - 1] = urunId + ". Ürün - " + urunFiyatlari[urunId - 1] + " TL";
+                                    }
+                                }
+                            }
+                        }
+
+                        if (orderConfirmed)
+                        {
+                            if (secilenMasaIndex == 0)
+                            {
+                                masa1Gelir += secilenMasaGeliri;
+                                masa1Durum = 3;
+                            }
+                            else if (secilenMasaIndex == 1)
+                            {
+                                masa2Gelir += secilenMasaGeliri;
+                                masa2Durum = 3;
+                            }
+                            else if (secilenMasaIndex == 2)
+                            {
+                                masa3Gelir += secilenMasaGeliri;
+                                masa3Durum = 3;
+                            }
+                        }
+                    }
+                }
+
+
+                if (secim == "2")
+                {
+                    while (true)
+                    {
+                        Console.Clear();
+                        Console.WriteLine(".................................................");
+                        Console.WriteLine(".                 MASA DURUMU                   .");
+                        Console.WriteLine(".................................................");
+                        Console.WriteLine(". 1 - Masa [" + masaDurumlari[masa1Durum] + "]                 ");
+                        Console.WriteLine(". 2 - Masa [" + masaDurumlari[masa2Durum] + "]                 ");
+                        Console.WriteLine(". 3 - Masa [" + masaDurumlari[masa3Durum] + "]                 ");
+                        Console.WriteLine(".................................................");
+
+                        Console.Write("Masa durumunu değiştirmek için masa numarası giriniz (ESC: Ana Menü): ");
+                        ConsoleKeyInfo girisTus = Console.ReadKey(true);
+                        if (girisTus.Key == ConsoleKey.Escape)
+                            break;
+                        string giris = girisTus.KeyChar.ToString();
+
+                        int secilenMasa = int.Parse(giris);
+
+                        if (secilenMasa == 1)
+                        {
+                            if (masa1Durum == 3)
+                            {
+                                int tempGelir = masa1Gelir;
+                                masaToplamGelirleri[0] += tempGelir;
+                                kasaToplamGelir += masaToplamGelirleri[0];
+                                masa1Gelir = 0;
+                                masa1Durum = 1;  // Boş
+                                Console.WriteLine("Masa 1 boşaltıldı ve " + tempGelir + " TL hesabı kasaya eklendi.");
+                            }
+
+                            else
+                            {
+                                masa1Durum = (masa1Durum + 1) % 3;
+                            }
+                        }
+
+                        else if (secilenMasa == 2)
+                        {
+                            if (masa2Durum == 3)
+                            {
+                                int tempGelir = masa2Gelir;
+                                masaToplamGelirleri[1] += tempGelir;
+                                kasaToplamGelir += masaToplamGelirleri[1];
+                                masa2Gelir = 0;
+                                masa2Durum = 1;  // Boş
+                                Console.WriteLine("Masa 2 boşaltıldı ve " + tempGelir + " TL hesabı kasaya eklendi.");
+                            }
+
+                            else
+                            {
+                                masa2Durum = (masa2Durum + 1) % 3;
+                            }
+                        }
+
+                        else if (secilenMasa == 3)
+                        {
+                            if (masa3Durum == 3)
+                            {
+                                int tempGelir = masa3Gelir;
+                                masaToplamGelirleri[2] += tempGelir;
+                                kasaToplamGelir += masaToplamGelirleri[2];
+                                masa3Gelir = 0;
+                                masa3Durum = 1;  // Boş
+                                Console.WriteLine("Masa 3 boşaltıldı ve " + tempGelir + " TL hesabı kasaya eklendi.");
+                            }
+
+                            else
+                            {
+                                masa3Durum = (masa3Durum + 1) % 3;
+                            }
+                        }
+
+                        else
+                        {
+                            Console.WriteLine("Geçersiz giriş! Devam etmek için bir tuşa basın...");
+                            Console.ReadKey();
+                            continue;
+                        }
+
+                    }
+                }
+
+                else if (secim == "3")
+                {
+                    Console.Clear();
+                    Console.WriteLine("Masa 1 Geliri: " + masaToplamGelirleri[0] + " TL");
+                    Console.WriteLine("Masa 2 Geliri: " + masaToplamGelirleri[1] + " TL");
+                    Console.WriteLine("Masa 3 Geliri: " + masaToplamGelirleri[2] + " TL");
+                    Console.WriteLine("Ana menüye dönmek için ESC'ye basın...");
+                    while (Console.ReadKey(true).Key != ConsoleKey.Escape) { }
+                }
+
+                else if (secim == "4")
+                {
+                    Console.Clear();
+                    Console.WriteLine("Toplam Kasa Geliri: " + kasaToplamGelir + " TL");
+                    Console.WriteLine("Ana menüye dönmek için ESC'ye basın...");
+                    while (Console.ReadKey(true).Key != ConsoleKey.Escape) { }
+                }
+            }
+        }
+    }
+}
