@@ -44,6 +44,7 @@ namespace RestoranYonetim
                         secilenMasaGeliri = 0;
                         bool orderConfirmed = false;
 
+                        // MASA AÇ MENÜSÜ
                         Console.Clear();
                         Console.WriteLine(".................................................");
                         Console.WriteLine(".              RAINMOON RESTAURANT              .");
@@ -84,6 +85,16 @@ namespace RestoranYonetim
                             continue;
                         }
 
+                        // Sipariş alma döngüsü: Kullanıcı önce kategori, sonra ürün, sonra adet seçsin
+                        // Kategori, ürün ve fiyat bilgilerini içeren diziler:
+                        string[] kategoriler = { "Yemekler", "İçecekler", "Tatlılar" };
+                        int[,] fiyatlar = { { 250, 200, 150 }, { 50, 60, 70 }, { 100, 200, 250 } };
+                        string[,] urunler = {
+        { "Pizza", "Makarna", "Sandviç" },
+        { "Limonata", "Soda", "Kahve" },
+        { "Profiterol", "Tiramisu", "Cheesecake" }
+    };
+
                         while (true)
                         {
                             Console.Clear();
@@ -91,63 +102,42 @@ namespace RestoranYonetim
                             Console.WriteLine(".                       MENÜ                    .");
                             Console.WriteLine(".................................................");
 
-
-                            for (int i = 0; i < urunFiyatlari.Length; i++)
+                            // Kategori seçimi
+                            Console.WriteLine("Lütfen kategori numarası giriniz:");
+                            for (int i = 0; i < kategoriler.Length; i++)
                             {
-                                Console.WriteLine(" " + (i + 1) + ". Ürün - " + urunFiyatlari[i] + " TL ");
+                                Console.WriteLine(" " + (i + 1) + ". " + kategoriler[i]);
                             }
+                            Console.Write("Kategori: ");
+                            int kategori = int.Parse(Console.ReadLine()) - 1;
 
+                            Console.Clear();
                             Console.WriteLine(".................................................");
-                            Console.WriteLine(".            X. MASA - SİPARİŞLERİ              .");
+                            Console.WriteLine($". {kategoriler[kategori]} Kategorisindeki Ürünler            .");
                             Console.WriteLine(".................................................");
-
-
-                            for (int i = 0; i < secilenUrunListesi[secilenMasaIndex].Length; i++)
+                            for (int i = 0; i < 3; i++)
                             {
-                                if (secilenUrunListesi[secilenMasaIndex][i] != null)
-                                {
-                                    Console.WriteLine(" " + secilenUrunListesi[secilenMasaIndex][i] + " ");
-                                }
+                                Console.WriteLine(" " + (i + 1) + ". " + urunler[kategori, i] + " - " + fiyatlar[kategori, i] + " TL");
                             }
-
                             Console.WriteLine(".................................................");
-                            Console.WriteLine(".                [Space] Onayla                 .");
-                            Console.WriteLine(".                [ESC] Ana Menü                 .");
-                            Console.WriteLine(".................................................");
-                            Console.Write("Ürün eklemek için ürün numarası giriniz: ");
+                            Console.Write("Ürün numarası: ");
+                            int urun = int.Parse(Console.ReadLine()) - 1;
 
-                            ConsoleKeyInfo key = Console.ReadKey(true);
-                            if (key.Key == ConsoleKey.Escape)
-                            {
-                                orderConfirmed = false;
+                            Console.Write("Adet giriniz: ");
+                            int adet = int.Parse(Console.ReadLine());
+
+                            // Siparişin tutarını hesaplayıp, o seansın açık sipariş gelirine ekle
+                            secilenMasaGeliri += fiyatlar[kategori, urun] * adet;
+                            // İsteğe bağlı olarak, sipariş detayını da saklayabilirsiniz:
+                            secilenUrunListesi[secilenMasaIndex][urun] = (urun + 1) + ". Ürün (" + urunler[kategori, urun] + ") - " + (fiyatlar[kategori, urun] * adet) + " TL";
+
+                            Console.Write("Başka sipariş eklemek ister misiniz? (E/H): ");
+                            if (Console.ReadLine().ToUpper() != "E")
                                 break;
-                            }
-                            else if (key.Key == ConsoleKey.Spacebar)
-                            {
-                                orderConfirmed = true;
-                                break;
-                            }
+                        } // sipariş alma döngüsü sonu
 
-                            else if (char.IsDigit(key.KeyChar))
-                            {
-                                int urunId = int.Parse(key.KeyChar.ToString());
-                                if (urunId >= 1 && urunId <= 4)
-                                {
-                                    if (secilenUrunler[secilenMasaIndex][urunId - 1])
-                                    {
-                                        secilenMasaGeliri -= urunFiyatlari[urunId - 1];
-                                        secilenUrunler[secilenMasaIndex][urunId - 1] = false;
-                                        secilenUrunListesi[secilenMasaIndex][urunId - 1] = null;
-                                    }
-                                    else
-                                    {
-                                        secilenMasaGeliri += urunFiyatlari[urunId - 1];
-                                        secilenUrunler[secilenMasaIndex][urunId - 1] = true;
-                                        secilenUrunListesi[secilenMasaIndex][urunId - 1] = urunId + ". Ürün - " + urunFiyatlari[urunId - 1] + " TL";
-                                    }
-                                }
-                            }
-                        }
+                        if (secilenMasaGeliri > 0)
+                            orderConfirmed = true;
 
                         if (orderConfirmed)
                         {
@@ -171,7 +161,8 @@ namespace RestoranYonetim
                 }
 
 
-                if (secim == "2")
+
+                    if (secim == "2")
                 {
                     while (true)
                     {
